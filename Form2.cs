@@ -27,6 +27,8 @@ namespace YMClient
         public void GetQSJSON()
         {
             listBox1.Items.Clear();
+            detail_d.Clear();
+            detail_q.Clear();
             String url = @"http://167.179.105.202:8000/questionlist/";
             HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create(url);
             webRequest.Method = "POST";
@@ -55,7 +57,7 @@ namespace YMClient
             {
                 result = reader.ReadToEnd();
             }
-            MessageBox.Show(result);
+            //MessageBox.Show(result);
 
             string jsonstring = result;
                 //@"[{uid:'1234',title:'hhh',text:'hhhh'},{uid:'4321',title:'gggg',text:'ggg'}]";
@@ -82,8 +84,12 @@ namespace YMClient
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = listBox1.SelectedIndex;
-            textBox1.Text = detail_q[index];
-            textBox2.Text = detail_d[index];
+            if(index>=0)
+            {
+                textBox1.Text = detail_q[index];
+                textBox2.Text = detail_d[index];
+            }
+            
         }
         private void F3_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -97,5 +103,9 @@ namespace YMClient
             f.ShowDialog();
         }
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+            GetQSJSON();
+        }
     }
 }

@@ -12,21 +12,7 @@ using System.IO;
 
 namespace YMClient
 {
-    public class User
-    {
-        public int uid { get; set; }
-        public string pwd { get; set; }
-        private static User instance;
-        private User(){ }
-        public static User GetInstance()
-        {
-            if(instance == null)
-            {
-                instance = new User();
-            }
-            return instance;
-        }
-    };
+    
     
     public partial class Form1 : Form
     {
@@ -134,6 +120,10 @@ namespace YMClient
                 f.Show();
                 this.Hide();
             }
+            else
+            {
+                MessageBox.Show("登录失败");
+            }
         }
         private void EExit(object sender, EventArgs e)
         {
@@ -156,6 +146,26 @@ namespace YMClient
                 f.Show();
                 this.Hide();
             }
+            else
+            {
+                MessageBox.Show("注册失败");
+            }
         }
-    }
+    };
+    public class User
+    {
+        public int uid { get; set; }
+        public string pwd { get; set; }
+        private static User instance;
+        private User() { }
+        public static User GetInstance()
+        {
+            if (instance == null)
+            {
+                instance = new User();
+            }
+            return instance;
+        }
+    };
 }
+
