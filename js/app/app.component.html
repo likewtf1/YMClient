@@ -1,0 +1,10 @@
+<h1>{{title}}</h1>
+
+<mat-slider min="1" max="100" step="1" value="1"></mat-slider>
+<nav>
+    <a routerLink="/dashboard">Dashboard</a>
+    <a routerLink="/questions">Questions</a>
+    <div *ngIf="userService.user; else notIF"><a (click)="userService.logout()">Logout</a></div>
+    <ng-template #notIF><a routerLink="/user">Login</a></ng-template>
+</nav>
+<router-outlet></router-outlet>

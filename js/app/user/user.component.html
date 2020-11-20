@@ -1,0 +1,16 @@
+<div *ngIf="user; else Notif">
+</div>
+<ng-template #Notif>
+    <label>username:
+        <input  #username/>
+    </label>
+<br/>
+
+    <label>password:
+        <input type="password" #password/>
+    </label>
+    <br/>
+    
+    <button (click)="login(username.value,password.value)">login</button>
+    <button (click)="register(username.value,password.value)">register</button>
+</ng-template>

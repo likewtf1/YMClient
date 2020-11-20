@@ -1,0 +1,32 @@
+<div *ngIf="question">
+
+    <h2>{{question.title}} </h2>
+    <div><span>id: </span>{{question.pk}}</div>
+    <div><span>uname: </span>{{question.u_name}}</div>
+    <div *ngIf="userService.getusername() === question.u_name; else notIF"> 
+        <label>EditContext:
+          <input [(ngModel)]="question.context" placeholder="context"/>
+        </label>
+      </div>
+    <ng-template #notIF>
+      <span>context: </span>{{question.context}}
+    </ng-template>
+  </div>
+
+
+<button (click)="goBack()">go back</button>
+<button *ngIf="question && userService.getusername() === question.u_name" (click)="save()">save</button>
+
+<div *ngIf="answers">
+  <ul>
+    <li *ngFor="let answer of answers">
+      <div><span>{{answer.u_name}}</span>: {{answer.context}}
+        <button *ngIf="question &&userService.getusername() === answer.u_name" class="delete" title="delete answer"
+        (click)="delete(answer)">x</button></div>
+    </li>
+  </ul>
+</div>
+<div *ngIf="userService.getusername()" >
+  <input #context/>
+  <button (click)="postanswer(context.value)">Post</button>
+</div>

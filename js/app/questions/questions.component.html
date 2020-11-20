@@ -1,0 +1,26 @@
+<h2>Questions</h2>
+
+<div>
+  <label>Question Title             :   
+    <input #Questiontitle />
+  </label>
+  <br/>
+
+  <label>Question context:
+    <input #Questioncontext />
+  </label>
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button (click)="add(Questiontitle.value,Questioncontext.value); Questioncontext.value='' ;Questiontitle.value=''">
+    add
+  </button>
+</div>
+
+<ul class="questions">
+  <li *ngFor="let question of questions">
+    <a routerLink="/detail/{{question.pk}}">
+    <span class="badge">{{question.pk}}</span> {{question.title}}
+    </a>
+    <button *ngIf="userService.getusername() === question.u_name" class="delete" title="delete question"
+    (click)="delete(question)">x</button>
+  </li>
+</ul>
